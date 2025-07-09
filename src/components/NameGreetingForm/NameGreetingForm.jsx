@@ -6,10 +6,10 @@ export const NameGreetingForm = () => {
 	const [error, setError] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false)
 
-	const handleInputChange = (event) => {
-		const { name, value } = event.target;
+	const handleInputChange = ({target: {name, value}}) => {
+		
 		setError("");
-    setIsSubmitted(prev => !prev);
+    setIsSubmitted(false);
 		setForm((prev) => ({ ...prev, [name]: value }));
 	};
 
@@ -20,6 +20,7 @@ export const NameGreetingForm = () => {
 			return;
 		}
 		console.log("Formulario enviado", form);
+    setIsSubmitted(true);
 	};
 
 	const handleKeyDown = (event) => {
