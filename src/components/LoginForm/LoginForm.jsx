@@ -17,6 +17,7 @@ export const LoginForm = () => {
 	const [form, setForm] = useState(INIT_FORM_STATE);
 	const [error, setError] = useState("");
     const [isRegistered, setIsRegistered] = useState(false);
+    const [loggedUser, setLoggedUser] = useState("");
 	
     const handleInputChange = ({ target: { name, value } }) => {
 		setError("");
@@ -32,23 +33,26 @@ export const LoginForm = () => {
 		const userRegistered = userList.find((user) => user.user === form.user && user.password === form.password);
 
 		if (userRegistered) {
-            setIsRegistered(true)
+            setIsRegistered(true);
+            setLoggedUser(userRegistered.user)
 			setError("");
-			console.log("Bienvenido", userRegistered.user);
+			setForm(INIT_FORM_STATE);
 		}
 
 		else {
-            setIsRegistered(false)
-            setError("Fallo de login")}
+            setIsRegistered(false);
+            setLoggedUser("");
+            setError("Fallo de login");
+        }
 	};
 
 	return (
 		<div className="form">
 			<h2>Formulario de Login</h2>
 			<input type="text" name="user" onChange={handleInputChange} />
-			<input type="text" name="password" onChange={handleInputChange} />
-			<button onClick={handleClick}>Login</button>
-            {isRegistered && <div><p>Bienvenido {form.user}</p></div>}
+			<input type="password" name="password" onChange={handleInputChange} />
+			<button onClick={handleClick} disabled={!form.user || !form.password}>Login</button>
+            {isRegistered && <div><p>Bienvenido {loggedUser}</p></div>}
 			{error && (
 				<div>
 					<p>Error de Login</p>
