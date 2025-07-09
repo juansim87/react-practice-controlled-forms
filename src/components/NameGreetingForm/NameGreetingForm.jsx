@@ -4,12 +4,11 @@ import "./NameGreetingForm.css";
 export const NameGreetingForm = () => {
 	const [form, setForm] = useState({ userName: "" });
 	const [error, setError] = useState("");
-  const [isSubmitted, setIsSubmitted] = useState(false)
+	const [isSubmitted, setIsSubmitted] = useState(false);
 
-	const handleInputChange = ({target: {name, value}}) => {
-		
+	const handleInputChange = ({ target: { name, value } }) => {
 		setError("");
-    setIsSubmitted(false);
+		setIsSubmitted(false);
 		setForm((prev) => ({ ...prev, [name]: value }));
 	};
 
@@ -20,12 +19,12 @@ export const NameGreetingForm = () => {
 			return;
 		}
 		console.log("Formulario enviado", form);
-    setIsSubmitted(true);
+		setIsSubmitted(true);
 	};
 
 	const handleKeyDown = (event) => {
 		if (event.key === "Enter") {
-      event.preventDefault();
+			event.preventDefault();
 			onFormSubmit();
 		}
 	};
@@ -41,7 +40,7 @@ export const NameGreetingForm = () => {
 				onChange={handleInputChange}
 				onKeyDown={handleKeyDown}
 			/>
-			<button type="button" onClick={onFormSubmit} >
+			<button type="button" onClick={onFormSubmit}>
 				Saludar
 			</button>
 			{isSubmitted && <p>¡Hola {form.userName}!</p>}

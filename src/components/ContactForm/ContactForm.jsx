@@ -45,15 +45,9 @@ export const ContactForm = () => {
 				<option value="" disabled>
 					¿Cuál es el motivo del contacto?
 				</option>
-				<option value="query">
-					Consulta
-				</option>
-				<option value="support">
-					Soporte
-				</option>
-				<option value="others">
-					Otros
-				</option>
+				<option value="query">Consulta</option>
+				<option value="support">Soporte</option>
+				<option value="others">Otros</option>
 			</select>
 			<textarea
 				name="message"
