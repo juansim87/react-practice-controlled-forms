@@ -6,18 +6,18 @@ export const AgeCheckForm = () => {
 	const [error, setError] = useState("");
 
 	const handleInputChange = (event) => {
-		setAge(event.target.value);
+		setAge(Number(event.target.value));
+		setError("");
 	};
 
 	const handleAgeCheck = () => {
-		if (age < 0) {
+		if (isNaN(age) || age < 0) {
 			setError("Introduce una edad válida");
-		}
-		if (age >= 18) {
-			setAgeCheck(true);
-		} else {
 			setAgeCheck(false);
+			return;
 		}
+		setError("");
+		setAgeCheck(age >= 18);
 	};
 
 	return (
@@ -25,9 +25,21 @@ export const AgeCheckForm = () => {
 			<h2>Check de mayoría de edad</h2>
 			<input type="number" value={age} onChange={handleInputChange} />
 			<button onClick={handleAgeCheck}>¿Soy mayor de edad?</button>
-			{ageCheck ? <p>Eres un adulto, compórtate</p> : <p>Vuelve a jugar a los tazos, enano mielda</p>}
-            {/* Renderiza el alert dos veces, buscar en la clase anterior y, si no, consultar con Juan */}
-            {error && alert("Introduce una edad válida")};
+			{error ? (
+				<div className="error">
+					<p>{error}</p>
+				</div>
+			) : ageCheck ? (
+				<div className="age-check">
+					<p>Eres un adulto, compórtate</p>
+				</div>
+			) : (
+				<div className="age-check">
+					<p>Vuelve a jugar a los tazos, enano mielda</p>
+				</div>
+			)}
+
+			{/* Renderiza el alert dos veces, buscar en la clase anterior y, si no, consultar con Juan */}
 		</div>
 	);
 };
