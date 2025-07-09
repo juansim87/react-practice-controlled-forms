@@ -10,7 +10,6 @@ const INITIAL_FORM_STATE = {
 
 export const ContactForm = () => {
 	const [form, setForm] = useState(INITIAL_FORM_STATE);
-	const [selection, setSelection] = useState("");
 	const [error, setError] = useState("");
 
 	const handleInputChange = ({ target: { name, value } }) => {
@@ -31,11 +30,6 @@ export const ContactForm = () => {
 		console.log("Formulario enviado", form);
 	};
 
-	const handleSelect = (event) => {
-		setSelection(event.target.value);
-		console.log(selection);
-	};
-
 	return (
 		<div className="form">
 			<h2>Formulario de contacto</h2>
@@ -47,22 +41,21 @@ export const ContactForm = () => {
 				onChange={handleInputChange}
 			/>
 			<input type="email" name="email" value={form.email} placeholder="Email" onChange={handleInputChange} />
-			<select value={form.reason} onChange={handleSelect}>
+			<select name="reason" value={form.reason} onChange={handleInputChange}>
 				<option value="" disabled>
 					¿Cuál es el motivo del contacto?
 				</option>
-				<option name="query" value="query">
+				<option value="query">
 					Consulta
 				</option>
-				<option name="support" value="support">
+				<option value="support">
 					Soporte
 				</option>
-				<option name="others" value="others">
+				<option value="others">
 					Otros
 				</option>
 			</select>
-			<input
-				type="textarea"
+			<textarea
 				name="message"
 				value={form.message}
 				placeholder="Describe brevemente tu consulta"
