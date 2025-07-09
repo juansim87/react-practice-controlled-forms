@@ -1,12 +1,50 @@
-import React from 'react';
-import "./NameGreetingForm.css"
+import { useState } from "react";
+import "./NameGreetingForm.css";
 
-const NameGreetingForm = () => {
-  return (
-    <div>
-      
-    </div>
-  )
-}
+export const NameGreetingForm = () => {
+	const [form, setForm] = useState({ userName: "" });
+	const [error, setError] = useState("");
+  const [isSubmitted, setIsSubmitted] = useState(false)
 
-export default NameGreetingForm
+	const handleInputChange = (event) => {
+		const { name, value } = event.target;
+		setError("");
+    setIsSubmitted(prev => !prev);
+		setForm((prev) => ({ ...prev, [name]: value }));
+	};
+
+	const onFormSubmit = () => {
+		setError("");
+		if (!form.userName.trim()) {
+			setError("Debes introducir un nombre");
+			return;
+		}
+		console.log("Formulario enviado", form);
+	};
+
+	const handleKeyDown = (event) => {
+		if (event.key === "Enter") {
+      event.preventDefault();
+			onFormSubmit();
+		}
+	};
+
+	return (
+		<div className="form">
+			<h2>Form de saludo</h2>
+			<input
+				type="text"
+				name="userName"
+				placeholder="¿Cuál es tu nombre?"
+				value={form.userName}
+				onChange={handleInputChange}
+				onKeyDown={handleKeyDown}
+			/>
+			<button type="button" onClick={onFormSubmit} >
+				Saludar
+			</button>
+			{isSubmitted && <p>¡Hola {form.userName}!</p>}
+			{error && <div className="form-error">{error}</div>}
+		</div>
+	);
+};
