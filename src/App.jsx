@@ -1,5 +1,6 @@
 import "./App.css";
 import { AgeCheckForm } from "./components/AgeCheckForm/AgeCheckForm";
+import { BookingForm } from "./components/BookingForm/BookingForm";
 import { CharacterCountForm } from "./components/CharacterCountForm/CharacterCountForm";
 import { ContactForm } from "./components/ContactForm/ContactForm";
 import { FavoriteColorForm } from "./components/FavoriteColorForm/FavoriteColorForm";
@@ -20,6 +21,7 @@ function App() {
       <FavoriteColorForm />
       <FeedbackForm />
       <RatingForm />
+      <BookingForm />
     </>
   );
 }
