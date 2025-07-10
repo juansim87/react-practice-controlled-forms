@@ -3,6 +3,7 @@ import { AgeCheckForm } from "./components/AgeCheckForm/AgeCheckForm";
 import { BookingForm } from "./components/BookingForm/BookingForm";
 import { CharacterCountForm } from "./components/CharacterCountForm/CharacterCountForm";
 import { ContactForm } from "./components/ContactForm/ContactForm";
+import { CurrencyConverterForm } from "./components/CurrencyConverterForm/CurrencyConverterForm";
 import { FavoriteColorForm } from "./components/FavoriteColorForm/FavoriteColorForm";
 import { FeedbackForm } from "./components/FeedbackForm/FeedbackForm";
 import { LoginForm } from "./components/LoginForm/LoginForm";
@@ -22,6 +23,7 @@ function App() {
       <FeedbackForm />
       <RatingForm />
       <BookingForm />
+      <CurrencyConverterForm/>
     </>
   );
 }
