@@ -28,8 +28,7 @@ export const BookingForm = () => {
 
   const handleReset = () => {
     setForm(INIT_RESERVATION_FORM);
-  }
-
+  };
 
   return (
     <div>
@@ -56,11 +55,14 @@ export const BookingForm = () => {
       />
       <button onClick={onFormSubmit}>Enviar</button>
       <button onClick={handleReset}>Borrar</button>
-{booked || form !== INIT_RESERVATION_FORM && <div><h3>Reserva enviada con los siguientes datos:</h3>
-    <p>Usuario: {form.user}</p>
-    <p>Email: {form.email}</p>
-    <p>Fecha: {form.date}</p>
-</div>}
+      {booked && form !== INIT_RESERVATION_FORM && (
+        <div>
+          <h3>Reserva enviada con los siguientes datos:</h3>
+          <p>Usuario: {form.user}</p>
+          <p>Email: {form.email}</p>
+          <p>Fecha: {form.date}</p>
+        </div>
+      )}
       {error && (
         <div>
           <p>{error}</p>
